@@ -102,6 +102,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/lge/mako/gps.conf:system/etc/gps.conf
 
+# vold configuration
+PRODUCT_COPY_FILES += \
+	device/lge/mako/vold.fstab:system/etc/vold.fstab
+
 # NFC packages
 PRODUCT_PACKAGES += \
     libnfc-nci \

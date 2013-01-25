@@ -154,7 +154,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #Upto 3 layers can go through overlays
 PRODUCT_PROPERTY_OVERRIDES += debug.mdpcomp.maxlayer=3
 
-PRODUCT_CHARACTERISTICS := nosdcard
+#E970 has sdcard
+#PRODUCT_CHARACTERISTICS := nosdcard
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
@@ -226,8 +227,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	rild.libpath=/system/lib/libril-qc-qmi-1.so
 
-PRODUCT_PROPERTY_OVERRIDES += \
-	telephony.lteOnCdmaDevice=0
+# Enable LTE on E970
+RIDES += \
+	telephony.lteOnCdmaDevice=0 \
+	telephony.lteOnGsmDevice=1 \
+	ro.telephony.default_network=9 \
+	ro.ril.def.preferred.network=9
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	drm.service.enabled=true

@@ -42,6 +42,7 @@ TARGET_OTA_ASSERT_DEVICE := mako,geeb,gee_a,e970,gee,geebus
 
 # Try to build the kernel
 #TARGET_KERNEL_CONFIG := mako_defconfig
+#TARGET_KERNEL_CONFIG := faux_mako_j1a_defconfig
 TARGET_KERNEL_CONFIG := mako_j1a_defconfig
 
 BOARD_USES_ALSA_AUDIO:= true

@@ -28,10 +28,11 @@ DEVICE_PACKAGE_OVERLAYS := device/lge/mako/overlay
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
-PRODUCT_PACKAGES := \
-	lights.mako
+#PRODUCT_PACKAGES := \
+#	lights.mako
 
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES := \
     charger_res_images \
     charger
 

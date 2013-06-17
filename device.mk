@@ -28,13 +28,12 @@ DEVICE_PACKAGE_OVERLAYS := device/lge/mako/overlay
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
-#PRODUCT_PACKAGES := \
-#	lights.mako
-
-#PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES := \
-    charger_res_images \
-    charger
+	lights.mako
+
+PRODUCT_PACKAGES += \
+	charger_res_images \
+	charger
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
@@ -107,23 +106,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/lge/mako/vold.fstab:system/etc/vold.fstab
 
-# NFC packages mako
-#PRODUCT_PACKAGES += \
-#    libnfc-nci \
-#    libnfc_nci_jni \
-#    nfc_nci.mako \
-#    NfcNci \
-#    Tag \
-#    com.android.nfc_extras
-
-# NFC packages mako for geeb
+# NFC packages
 PRODUCT_PACKAGES += \
     libnfc \
     libnfc_jni \
-    nfc.mako \
     Nfc \
     Tag \
     com.android.nfc_extras
+# use vendor HAL
+#    nfc.mako \
 
 # NFCEE access control
 ifeq ($(TARGET_BUILD_VARIANT),user)
@@ -170,9 +161,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #Upto 3 layers can go through overlays
 PRODUCT_PROPERTY_OVERRIDES += persist.hwc.mdpcomp.enable=true
 
-#E970 has sdcard
-#PRODUCT_CHARACTERISTICS := nosdcard
-
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_PACKAGES += \
@@ -206,7 +194,8 @@ PRODUCT_PACKAGES += \
 	power.msm8960
 
 PRODUCT_COPY_FILES += \
-	device/lge/mako/init.mako.bt.sh:system/etc/init.mako.bt.sh
+	device/lge/mako/init.mako.bt.sh:system/etc/init.mako.bt.sh \
+	device/lge/mako/init.mako.wlan.sh:system/etc/init.mako.wlan.sh
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.qualcomm.bt.hci_transport=smd
@@ -244,7 +233,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	rild.libpath=/system/lib/libril-qc-qmi-1.so
 
-# Enable LTE on E970
+# Enable LTE
 PRODUCT_PROPERTY_OVERRIDES += \
 	telephony.lteOnCdmaDevice=0 \
 	telephony.lteOnGsmDevice=1 \
@@ -267,6 +256,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.qc.sensors.wl_dis=true
+
+# poll modem status(needed for slow JB radio)
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.telephony.call_stat_poll=true
+
+# override voice tx device when on headphones with no mic(needed for JB radio)
+PRODUCT_PROPERTY_OVERRIDES += \
+        ro.ril.tx_headphone_override=Handset
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp

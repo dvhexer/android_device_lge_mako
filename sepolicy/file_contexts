@@ -6,7 +6,7 @@
 /dev/msm_amrwb.*               u:object_r:audio_device:s0
 /dev/msm_aac.*                 u:object_r:audio_device:s0
 
-/dev/bcm2079x-i2c              u:object_r:nfc_device:s0
+/dev/pn544                     u:object_r:nfc_device:s0
 /dev/qseecom                   u:object_r:tee_device:s0
 
 # Jpeg Engine support
@@ -60,7 +60,8 @@
 /dev/socket/mpdecision(/.*)?     u:object_r:mpdecision_socket:s0
 
 # Block labeling
-/dev/block/mmcblk0p[89]        u:object_r:efs_block_device:s0
+#/dev/block/mmcblk0p[89]        u:object_r:efs_block_device:s0
+/dev/block/mmcblk0p1[234]        u:object_r:efs_block_device:s0
 
 # Data labeling
 /data/audio(/.*)?              u:object_r:audio_data_file:s0
